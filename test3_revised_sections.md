@@ -4,7 +4,7 @@ This file provides ready-to-insert replacement text for the requested parts of t
 It is written to keep the same section numbering style used in `test3.pdf`.
 
 ### Figure 3 (replacement note)
-Replace **"Figure 3: Federated Learning Architecture"** with the **general architecture figure from the cited article** (instead of a bus-specific or over-specialized visual).
+Replace **"Figure 3: Federated Learning Architecture"** with the **general architecture figure from article [27]** (instead of a bus-specific or over-specialized visual).
 
 Suggested caption:
 
@@ -124,13 +124,13 @@ FedNova normalizes updates so clients with different local step counts do not bi
 
 ### 5.5.6 DAAFL
 **How it works (intuitive):**
-DAAFL reweights contributions using both data quantity and recency/participation disparity.
+DAAFL reweights contributions using both data quantity and staleness-aware participation weighting.
 
 **Simple math:**
 \[
-\alpha_k^t \propto n_k \cdot f(\text{recency}_k^t)
+\alpha_k^t \propto n_k \cdot f(s_k^t)
 \]
-with a simple recency weight such as \(f(r)=\frac{1}{1+r}\), where larger staleness/recency values reduce client impact.
+where \(s_k^t\) is staleness (time since the client last participated effectively), and a simple choice is \(f(s)=\frac{1}{1+s}\), so updates from clients with higher staleness receive less weight.
 
 ### 5.5.7 FedSA
 **How it works (intuitive):**
@@ -143,7 +143,7 @@ E_k = \max(1, E_{\max} - \lambda s_k)
 
 ---
 
-## 5.6 Critères de choix
+## 5.6 Choice Criteria
 Algorithm and architecture selection should be based on operational constraints, not only benchmark accuracy.
 
 Main criteria:
